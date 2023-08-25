@@ -1,0 +1,33 @@
+version: '3.5'
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./:/var/www
+      - ./_docker/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    depends_on:
+      - app
+      - db
+
+  db:
+    image: postgres:15.4-bookworm
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: T3z4DXMRF%RdSx
+    ports:
+      - "5432:5432"
+    volumes:
+      - /var/lib/posgresql:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: _docker/app/Dockerfile
+    container_name: app
+    volumes:
+      - ./:/var/www
+    restart: unless-stopped
