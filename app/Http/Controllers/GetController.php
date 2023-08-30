@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class GetController extends Controller
 {
-    //
+    public function get(): array
+    {
+        return ['result' => 'ok'];
+    }
 }
