@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\GetController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,12 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::get('/get', [GetController::class, 'get']);
-//Route::group(['middleware' => ['response.json'] ], function() {
-    Route::group(['middleware' => ['auth:sanctum']], function() {
-        //Route::get('/get', [GetController::class, 'get']);
-    });
-//});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('/auth/register/email', [AuthController::class, 'registerByEmail']);
