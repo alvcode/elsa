@@ -1,5 +1,6 @@
 <?php
 
+use App\Exceptions\NotFoundHttpException;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,4 +20,13 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post('/auth/register/email', [AuthController::class, 'registerByEmail']);
+Route::prefix('auth')->group(function() {
+    Route::post('register/email', [AuthController::class, 'registerByEmail']);
+});
+
+
+
+
+Route::any('{any}', function(){
+    throw new NotFoundHttpException('Page not found');
+})->where('any', '.*');
