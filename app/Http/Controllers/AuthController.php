@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Auth\RegisterActionsContract;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\Password;
+use App\Http\Requests\Auth\RegisterEmailRequest;
+//use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {   
@@ -29,17 +29,18 @@ class AuthController extends Controller
     *     @OA\Response(response=500, description="Внутренняя ошибка сервера")
     * )
     */
-    public function registerByEmail(Request $request, RegisterActionsContract $registerEmailAction): array
+    public function registerByEmail(
+        RegisterEmailRequest $request, 
+        RegisterActionsContract $registerEmailAction
+    ): array
     {
-        // var_dump($request->bearerToken()); exit();
-        $data = $request->validate([
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', Password::default()]
-        ]);
+        $validated = $request->validated();
 
-        $user = $registerEmailAction($data);
+        $user = $registerEmailAction($validated);
 
         var_dump($user); exit();
+
+        //var_dump($user); exit();
 
         return ['result' => 'registered'];
     }
