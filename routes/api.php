@@ -28,5 +28,5 @@ Route::prefix('auth')->group(function() {
 
 
 Route::any('{any}', function(){
-    throw new NotFoundHttpException('Page not found');
+    throw new NotFoundHttpException(__('Page not found'));
 })->where('any', '.*');
