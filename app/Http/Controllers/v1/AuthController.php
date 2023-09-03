@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\v1;
 
-use App\Contracts\Auth\RegisterActionsContract;
-use App\Http\Requests\Auth\RegisterEmailRequest;
+use App\Contracts\v1\Auth\RegisterActionsContract;
+use App\Http\Requests\v1\Auth\RegisterEmailRequest;
 //use Illuminate\Http\Request;
 
 class AuthController extends Controller

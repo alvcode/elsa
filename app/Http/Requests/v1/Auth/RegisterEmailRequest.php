@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\v1\Auth;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rules\Password;
 
-class RegisterEmailRequest extends FormRequest
+class RegisterEmailRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.

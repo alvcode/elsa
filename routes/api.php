@@ -1,8 +1,7 @@
 <?php
 
 use App\Exceptions\NotFoundHttpException;
-use App\Http\Controllers\AuthController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\v1\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*

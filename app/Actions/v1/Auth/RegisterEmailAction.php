@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\Auth;
+namespace App\Actions\v1\Auth;
 
-use App\Contracts\Auth\RegisterActionsContract;
+use App\Contracts\v1\Auth\RegisterActionsContract;
 use App\Models\User;
 
 class RegisterEmailAction implements RegisterActionsContract
