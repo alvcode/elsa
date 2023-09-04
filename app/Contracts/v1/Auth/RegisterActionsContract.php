@@ -2,7 +2,7 @@
 
 namespace App\Contracts\v1\Auth;
 
-use App\Models\User;
+use App\Models\v1\User;
 
 interface RegisterActionsContract
 {

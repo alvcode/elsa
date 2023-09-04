@@ -23,8 +23,8 @@ class RegisterEmailRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', Password::default()]
+            'email' => ['required', 'string', 'email', 'max:150', 'unique:users'],
+            'password' => ['required', Password::default(), 'max:150']
         ];
     }
 }

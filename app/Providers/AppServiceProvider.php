@@ -2,9 +2,8 @@
 
 namespace App\Providers;
 
-use App\Actions\Auth\RegisterEmailAction;
-use App\Contracts\Auth\RegisterActionsContract;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Sanctum\Sanctum;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        Sanctum::ignoreMigrations();
     }
 
     /**

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\v1;
 
 use App\Contracts\v1\Auth\RegisterActionsContract;
 use App\Http\Requests\v1\Auth\RegisterEmailRequest;
+use App\Models\v1\User;
+use Illuminate\Support\Facades\Hash;
+
 //use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -35,6 +38,13 @@ class AuthController extends Controller
     ): array
     {
         $validated = $request->validated();
+
+        $user = User::first();
+        if (Hash::check($validated['password'], $user->password)) {
+            var_dump('yes'); exit();
+        }else{
+            var_dump('no'); exit();
+        }
 
         $user = $registerEmailAction($validated);
 

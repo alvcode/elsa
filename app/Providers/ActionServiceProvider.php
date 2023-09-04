@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Actions\Auth\RegisterEmailAction;
-use App\Contracts\Auth\RegisterActionsContract;
+use App\Actions\v1\Auth\RegisterEmailAction;
+use App\Contracts\v1\Auth\RegisterActionsContract;
 
 class ActionServiceProvider extends ServiceProvider
 {

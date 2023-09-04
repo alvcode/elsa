@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('confirmation_code', function (Blueprint $table) {
+        Schema::create('confirmation_codes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->index('confirmation_code_user_idx');
+            $table->integer('user_id')->index('confirmation_codes_user_idx');
             $table->string('code', 20);
             $table->string('action', 20);
-            $table->timestamp('valid_to')->index('confirmation_code_valid_idx');
+            $table->timestamp('valid_to')->index('confirmation_codes_valid_idx');
             $table->boolean('is_used');
         });
 
-        Schema::table('confirmation_code', function (Blueprint $table) {
+        Schema::table('confirmation_codes', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('no action')->onDelete('cascade');
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('confirmation_code');
+        Schema::dropIfExists('confirmation_codes');
     }
 };

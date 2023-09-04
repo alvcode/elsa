@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('main_config', function (Blueprint $table) {
+        Schema::create('main_configs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('config_code', 65)->unique('main_config_code_idx');
+            $table->string('config_code', 65)->unique('main_configs_code_idx');
             $table->string('config_value', 500);
             $table->string('config_description', 250);
             $table->string('config_type', 20);
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('main_config');
+        Schema::dropIfExists('main_configs');
     }
 };
