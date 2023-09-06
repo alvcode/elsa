@@ -13,12 +13,14 @@ class ConfirmEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private array $data;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(array $data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -27,19 +29,19 @@ class ConfirmEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Confirm Email',
+            subject: __('Подтвердите свой e-mail'),
         );
     }
 
     /**
      * Get the message content definition.
      */
-    public function content(): Content
-    {
-        return new Content(
-            view: 'view.mails.confirmEmail',
-        );
-    }
+    // public function content(): Content
+    // {
+    //     return new Content(
+    //         view: 'emails.confirm_email',
+    //     );
+    // }
 
     /**
      * Get the attachments for the message.
@@ -49,5 +51,12 @@ class ConfirmEmail extends Mailable
     public function attachments(): array
     {
         return [];
+    }
+
+    public function build()
+    {
+        return $this->from('alvcode@ya.ru', 'Elsa project')
+            ->view('emails.confirmEmail')
+            ->with('validate_email_code', $this->data['validate_email_code']);
     }
 }

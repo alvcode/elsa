@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::prefix('auth')->group(function() {
-    Route::post('register/email', [AuthController::class, 'registerByEmail']);
+    Route::post('email/register', [AuthController::class, 'registerByEmail']);
+    Route::post('email/confirm', [AuthController::class, 'confirmEmail']);
 });
 
 

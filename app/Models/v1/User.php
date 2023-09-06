@@ -3,6 +3,9 @@
 namespace App\Models\v1;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Exceptions\UnprocessableHttpException;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -75,6 +78,25 @@ class User extends Authenticatable
                 'validate_email_code' => rand(11111, 32767)
             ]
         );
+    }
+
+
+    /**
+     * Подтверждение email
+     *
+     * @param integer $code
+     * @return self
+     */
+    public function confirmEmail(int $code): self 
+    {
+        if((int)$this->validate_email_code === $code){
+            $carbon = Carbon::now();
+            $this->email_verified_at = $carbon->format('Y-m-d H:i:s');
+            $this->save();
+            return $this;
+        }
+
+        throw new UnprocessableHttpException(__('auth.invalid_code'));
     }
 
 

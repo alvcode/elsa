@@ -15,7 +15,7 @@ class EmailController extends Controller
     public function confirmEmail()
     {
 
-        return view('emails.confirmEmail');
+        return view('emails.confirmEmail', ['validate_email_code' => 46456]);
     }
     
 }

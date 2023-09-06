@@ -17,20 +17,7 @@
                 <tbody>
                 <tr>
                     <td>
-                        <table width="100%" cellspacing="0" cellpadding="5" bgcolor="ffffff">
-                            <tbody>
-                            <tr>
-                                <td style="padding: 15px 0 0 15px; color: #ffffff;" width="60">
-                                    <a href="https://enroller.ru" target="_blank">
-                                        <img width="60" alt="logo_enroller" src="https://back.enroller.ru/img/logo-mini.png">
-                                    </a>
-                                </td>
-                                <td style="padding-top: 15px;">
-                                    <a style="color: #1C1C74; font-weight: 700;text-decoration: none; font-size: 22px;" href="https://enroller.ru" target="_blank">Enroller</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        
                     </td>
                 </tr>
                 <tr>
@@ -39,9 +26,8 @@
                             <tbody>
                             <tr>
                                 <td style="color: #333333; padding-top: 15px; line-height: 1.8;">
-                                    Спасибо за регистрацию в веб-сервисе записи онлайн Enroller!<br>
-                                    Осталось совсем немного- подтвердить электронную почту.<br>
-                                    Для этого перейдите по ссылке:<br>
+                                    Спасибо за регистрацию в Elsa!<br>
+                                    Ваш код подтверждения почтового адреса: {{ $validate_email_code }}
                                     
                                 </td>
                             </tr>
@@ -58,8 +44,6 @@
                                 Данное сообщение сгенерировано автоматически, <b>пожалуйста не отвечайте на него</b>.
                                 Это сообщение электронной почты и любые файлы, переданные с ним, предназначены
                                 для использования только адресатом и не подлежат разглашению.
-                                Если вы считаете, что
-                                данное сообщение попало к вам по ошибке, пожалуйста, сообщите нам об этом: <b>info@enroller.ru</b>
                             </td>
                         </tr>
                         <tr>
