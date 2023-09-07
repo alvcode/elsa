@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
@@ -20,7 +21,6 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $password
  * @property string $created_at
  * @property string $updated_at
- * @property bool $is_deleted
  */
 class User extends Authenticatable
 {
@@ -36,7 +36,6 @@ class User extends Authenticatable
         'password',
         'phone_number',
         'validate_email_code',
-        'is_deleted'
     ];
 
     /**
@@ -74,7 +73,6 @@ class User extends Authenticatable
             [
                 'email' => $params['email'],
                 'password' => $params['password'],
-                'is_deleted' => false, 
                 'validate_email_code' => rand(11111, 32767)
             ]
         );
@@ -97,6 +95,24 @@ class User extends Authenticatable
         }
 
         throw new UnprocessableHttpException(__('auth.invalid_code'));
+    }
+
+
+    public static function getByEmailAndPassword(string $email, string $password): self
+    {
+        $user = self::query()->where([
+            'email' => $email
+        ])->first();
+
+        if(!$user){
+            throw new UnprocessableHttpException(__('auth.failed'));
+        }
+
+        if(!Hash::check($password, $user->password)){
+            throw new UnprocessableHttpException(__('auth.password'));
+        }
+
+        return $user;
     }
 
 

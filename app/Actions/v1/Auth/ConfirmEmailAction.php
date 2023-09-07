@@ -10,7 +10,7 @@ class ConfirmEmailAction implements ConfirmActionsContract
 
     public function __invoke(array $data): User
     {
-        $user = User::query()->where(['email' => $data['email'], 'is_deleted' => false])
+        $user = User::query()->where(['email' => $data['email']])
             ->firstOrFail();
 
         return $user->confirmEmail((int)$data['code']);

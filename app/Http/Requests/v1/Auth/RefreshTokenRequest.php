@@ -3,8 +3,9 @@
 namespace App\Http\Requests\v1\Auth;
 
 use App\Http\Requests\BaseRequest;
+use Illuminate\Validation\Rules\Password;
 
-class ConfirmEmailRequest extends BaseRequest
+class RefreshTokenRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +23,8 @@ class ConfirmEmailRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email', 'max:150'],
-            'code' => ['required', 'integer']
+            'token' => ['required', 'string', 'min:64', 'max:64'],
+            'refresh_token' => ['required', 'string', 'min:64', 'max:64'],
         ];
     }
 }
