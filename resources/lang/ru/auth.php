@@ -19,5 +19,8 @@ return [
     'invalid_code' => 'Введен неверный код подтверждения',
     'user_not_found' => 'Пользователь не найден',
     'refresh_not_found' => 'Refresh Token не найден',
-    'email_not_confirmed' => 'E-mail адрес не подтвержден'
+    'email_not_confirmed' => 'E-mail адрес не подтвержден',
+    'invalid_reset_code' => 'Неверный код сброса пароля',
+    'email_confirmed' => 'E-mail адрес уже подтвержден',
+    'call_error' => 'Ошибка совершения звонка на указанный номер',
 ];

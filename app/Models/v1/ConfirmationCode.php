@@ -25,7 +25,8 @@ class ConfirmationCode extends Model
     public $timestamps = false;
 
     const ACTIONS = [
-        'forgot_email' => 'Восстановление e-mail'
+        'forgot_email' => 'Восстановление e-mail',
+        'auth_call' => 'Код входа по звонку'
     ];
 
 
@@ -63,6 +64,38 @@ class ConfirmationCode extends Model
         ]);
     }
 
+    /**
+     * Устанавливает уже существующий код на подтверждение
+     *
+     * @param integer $userId - ID юзера
+     * @param string $action - self::ACTIONS
+     * @param integer $lifeTime - Время жизни в минутах
+     * @param string $code
+     * @return void
+     */
+    public static function setCode(
+        int $userId,
+        string $action,
+        int $lifeTime,
+        string $code
+    )
+    {
+        if(!isset(self::ACTIONS[$action])){
+            throw new \Exception('Передан неизвестный action');
+        }
+
+        $carbon = Carbon::now();
+        $carbon->addMinutes($lifeTime);
+
+        return self::create([
+            'user_id' => $userId,
+            'action' => $action,
+            'valid_to' => $carbon->format('Y-m-d H:i:s'),
+            'is_used' => false,
+            'code' => $code
+        ]);
+    }
+
 
     /**
      * Проверяет наличие и отмечает, что код был использован
@@ -86,7 +119,7 @@ class ConfirmationCode extends Model
             'code' => $code,
             'is_used' => false
         ])
-        ->where('valid_to_dt', '>', $carbon->format('Y-m-d H:i:s'))
+        ->where('valid_to', '>', $carbon->format('Y-m-d H:i:s'))
         ->first();
 
         if(!$model){

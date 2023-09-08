@@ -79,6 +79,16 @@ class User extends Authenticatable
     }
 
 
+    public static function createByPhoneNumber(int $phone_number): self 
+    {
+        return self::query()->create(
+            [
+                'phone_number' => $phone_number,
+            ]
+        );
+    }
+
+
     /**
      * Подтверждение email
      *
@@ -113,6 +123,20 @@ class User extends Authenticatable
         }
 
         return $user;
+    }
+
+    /**
+     * Сброс пароля
+     *
+     * @param string $password
+     * @return self
+     */
+    public function resetPassword(string $password): self 
+    {
+        $this->password = $password;
+        $this->save();
+
+        return $this;
     }
 
 

@@ -75,6 +75,20 @@ class UserToken extends Model
 
 
     /**
+     * Очищает все токены пользователя
+     * Используем, например, при сбросе пароля
+     *
+     * @param integer $user_id
+     * @return boolean
+     */
+    public static function flushTokensByUser(int $user_id): bool 
+    {
+        self::query()->where(['user_id' => $user_id])->delete();
+        return true;
+    }
+
+
+    /**
      * Генерирует токен
      *
      * @return void

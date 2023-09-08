@@ -19,5 +19,8 @@ return [
     'invalid_code' => 'Invalid verification code entered',
     'user_not_found' => 'User is not found',
     'refresh_not_found' => 'Refresh Token is not found',
-    'email_not_confirmed' => 'Email address not confirmed'
+    'email_not_confirmed' => 'Email address not confirmed',
+    'invalid_reset_code' => 'Invalid password reset code',
+    'email_confirmed' => 'Email address has already been confirmed',
+    'call_error' => 'Error making a call to the specified number'
 ];

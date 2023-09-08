@@ -25,6 +25,10 @@ Route::prefix('auth')->group(function() {
     Route::post('email/login', [AuthController::class, 'loginEmail']);
     Route::post('token/refresh', [AuthController::class, 'refreshToken']);
     Route::post('email/forgot', [AuthController::class, 'forgotEmail']);
+    Route::post('password/reset', [AuthController::class, 'resetPassword']);
+    Route::post('email/confirm/repeat-code', [AuthController::class, 'repeatConfirmEmailCode']);
+    Route::post('phone/call', [AuthController::class, 'phoneCall']);
+    Route::post('phone/login', [AuthController::class, 'phoneLogin']);
 });
 
 
