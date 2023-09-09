@@ -55,7 +55,7 @@ class ForgotEmail extends Mailable
 
     public function build()
     {
-        return $this->from('alvcode@ya.ru', 'Elsa project')
+        return $this->from(config('mail.from.address'), config('mail.from.name'))
             ->view('emails.forgotEmail')
             ->with('forgot_email_code', $this->data['forgot_email_code']);
     }

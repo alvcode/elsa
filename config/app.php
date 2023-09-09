@@ -186,4 +186,10 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+
+    'contact_email' => env('APP_CONTACT_EMAIL'),
+    'contact_phone' => env('APP_CONTACT_PHONE'),
+    'app_store_link' => env('APP_APP_STORE_LINK'),
+    'play_store_link' => env('APP_PLAY_STORE_LINK'),
+
 ];

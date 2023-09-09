@@ -55,7 +55,7 @@ class ConfirmEmail extends Mailable
 
     public function build()
     {
-        return $this->from('alvcode@ya.ru', 'Elsa project')
+        return $this->from(config('mail.from.address'), config('mail.from.name'))
             ->view('emails.confirmEmail')
             ->with('validate_email_code', $this->data['validate_email_code']);
     }
