@@ -22,5 +22,6 @@ return [
     'email_not_confirmed' => 'Email address not confirmed',
     'invalid_reset_code' => 'Invalid password reset code',
     'email_confirmed' => 'Email address has already been confirmed',
-    'call_error' => 'Error making a call to the specified number'
+    'call_error' => 'Error making a call to the specified number',
+    'unauthorized' => 'You are not authorized'
 ];

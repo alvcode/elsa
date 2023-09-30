@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Auth;
 
+use App\Components\Formatter;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,7 +18,7 @@ class UserTokenResource extends JsonResource
         return [
             'token' => $this->token,
             'refresh_token' => $this->refresh_token,
-            'expired_to' => $this->expired_to
+            'expired_to' => Formatter::unixTimeUTCToDateTime($this->expired_to)
         ];
     }
 }

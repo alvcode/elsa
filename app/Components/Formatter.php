@@ -6,7 +6,8 @@ namespace App\Components;
 class Formatter 
 {
     /**
-     * Генерирует хэш
+     * Генерирует некриптографический хэш, убирая слова на которые могут реагировать 
+     * спам-фильтры различных сервисов-рассылок
      * @param $length
      * @return string
      */
@@ -89,6 +90,18 @@ class Formatter
         $month = ['', 'январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь',
             'октябрь', 'ноябрь', 'декабрь'];
         return $month[$monthIdx];
+    }
+
+
+    /**
+     * Конвертирует Unix Timestamp в datetime строку вида 'Y-m-d H:i:s\Z'
+     *
+     * @param integer $unixTimestamp
+     * @return string
+     */
+    public static function unixTimeUTCToDateTime(int $unixTimestamp): string
+    {
+        return date('Y-m-d\TH:i:s\Z', $unixTimestamp);
     }
 
 
