@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Auth;
+namespace App\Http\Resources\v1\Auth;
 
 use App\Components\Formatter;
 use Illuminate\Http\Request;

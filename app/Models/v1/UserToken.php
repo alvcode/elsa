@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
  * @property string $token
  * @property string $refresh_token
  * @property int $expired_to
+ * @property string $device_id
  */
 class UserToken extends Model
 {
@@ -71,6 +72,26 @@ class UserToken extends Model
             'refresh_token' => $refresh_token,
             'device_id' => $deviceId
         ])->first();
+    }
+
+
+    /**
+     * Возвращает user_id по токену и deviceId
+     *
+     * @param string $token
+     * @param string $deviceId
+     * @return integer|null
+     */
+    public static function getUserIdByTokenAndDevice(string $token, string $deviceId): int|null
+    {
+        $carbon = Carbon::now();
+
+        $model = self::query()
+        ->where(['token' => $token, 'device_id' => $deviceId])
+        ->where('expired_to', '>', $carbon->getTimestamp())
+        ->first();
+
+        return $model ? $model->user_id : null;
     }
 
 

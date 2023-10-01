@@ -20,10 +20,9 @@ use App\Http\Requests\v1\Auth\RefreshTokenRequest;
 use App\Http\Requests\v1\Auth\RegisterEmailRequest;
 use App\Http\Requests\v1\Auth\ResetPasswordRequest;
 use App\Http\Requests\v1\Auth\SendConfirmEmailRequest;
-use App\Http\Resources\Auth\UserTokenResource;
+use App\Http\Resources\v1\Auth\UserTokenResource;
+use App\Http\Validators\v1\Auth\DeviceIdHeaderValidator;
 use Illuminate\Support\Facades\Validator;
-
-//use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {   
@@ -59,9 +58,8 @@ class AuthController extends Controller
     )
     {
         $validated = $request->validated();
-        $validateDeviceId = Validator::make(['Device-Id' => $request->header('Device-Id')], [
-            'Device-Id' => ['required', 'string', 'max:15']
-        ])->validate();
+        $validateDeviceId = new DeviceIdHeaderValidator(['Device-Id' => $request->header('Device-Id')]);
+        $validateDeviceId = $validateDeviceId->validate();
 
         $userToken = $loginActionsContract($validated, $validateDeviceId['Device-Id']);
         return new UserTokenResource($userToken);
@@ -74,9 +72,8 @@ class AuthController extends Controller
     )
     {
         $validated = $request->validated();
-        $validateDeviceId = Validator::make(['Device-Id' => $request->header('Device-Id')], [
-            'Device-Id' => ['required', 'string', 'max:15']
-        ])->validate();
+        $validateDeviceId = new DeviceIdHeaderValidator(['Device-Id' => $request->header('Device-Id')]);
+        $validateDeviceId = $validateDeviceId->validate();
         
         $userToken = $refreshActionsContract($validated, $validateDeviceId['Device-Id']);
         return new UserTokenResource($userToken);
@@ -134,9 +131,8 @@ class AuthController extends Controller
     )
     {
         $validated = $request->validated();
-        $validateDeviceId = Validator::make(['Device-Id' => $request->header('Device-Id')], [
-            'Device-Id' => ['required', 'string', 'max:15']
-        ])->validate();
+        $validateDeviceId = new DeviceIdHeaderValidator(['Device-Id' => $request->header('Device-Id')]);
+        $validateDeviceId = $validateDeviceId->validate();
 
         $userToken = $loginPhoneActionsContract($validated, $validateDeviceId['Device-Id']);
         return new UserTokenResource($userToken);

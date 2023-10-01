@@ -2,10 +2,13 @@
 
 namespace App\Http\Middleware;
 
+use App\Exceptions\UnauthorizedHttpException;
+use App\Http\Validators\v1\Auth\DeviceIdHeaderValidator;
 use App\Models\v1\User;
+use App\Models\v1\UserToken;
 use Closure;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\UnauthorizedException;
+use Illuminate\Support\Facades\Validator;
 
 class BearerAuth
 {
@@ -13,20 +16,27 @@ class BearerAuth
     {
         $token = $request->bearerToken();
 
+        $validateDeviceId = new DeviceIdHeaderValidator(['Device-Id' => $request->header('Device-Id')]);
+        $validateDeviceId = $validateDeviceId->validate();
+
         if (!$token) {
-            throw new UnauthorizedException(__('auth.unauthorized'));
+            throw new UnauthorizedHttpException(__('auth.unauthorized'));
         }
 
-        // Найдем пользователя по токену (предполагая, что вы используете столбец "api_token" для хранения токена)
-        $user = User::where('api_token', $token)->first();
+        $userId = UserToken::getUserIdByTokenAndDevice($token, $validateDeviceId['Device-Id']);
+        if(!$userId){
+            throw new UnauthorizedHttpException(__('auth.unauthorized'));
+        }
+
+        $user = User::where('id', $userId)->first();
 
         if (!$user) {
-            return response()->json(['message' => 'Invalid token'], 401);
+            throw new UnauthorizedHttpException(__('auth.unauthorized'));
         }
 
         // Авторизуем пользователя
         Auth::login($user);
-
+    
         return $next($request);
     }
 }
