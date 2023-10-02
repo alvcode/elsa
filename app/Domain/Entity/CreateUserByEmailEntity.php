@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Domain\Entity;
+
+class CreateUserByEmailEntity
+{
+    private ?int $id;
+    private string $email;
+    private string $password;
+
+    public function __construct(
+        ?int $id,
+        string $email,
+        string $password
+    )
+    {
+        $this->id = $id;
+        $this->email = $email;
+        $this->password = $password;
+    }
+
+    public function getId(): ?int 
+    {
+        return $this->id;
+    }
+    
+}
