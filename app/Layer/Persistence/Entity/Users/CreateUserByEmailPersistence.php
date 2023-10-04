@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Layer\Domain\Users\Entity;
+namespace App\Layer\Persistence\Entity\Users;
 
-class CreateUserByEmailEntity
+class CreateUserByEmailPersistence
 {
     private ?int $id;
     private string $email;
@@ -33,5 +33,4 @@ class CreateUserByEmailEntity
     {
         return $this->password;
     }
-    
 }

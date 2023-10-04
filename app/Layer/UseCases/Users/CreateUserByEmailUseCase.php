@@ -2,14 +2,16 @@
 
 namespace App\Layer\UseCases\Users;
 
-use App\Domain\Users\Dto\CreateUserByEmailDto;
+use App\Layer\Domain\Users\CreateUserByEmailBuilder;
+use App\Layer\Domain\Users\Dto\CreateUserByEmailDto;
+use App\Layer\Domain\Users\SaveUserByEmailInterface;
 
 class CreateUserByEmailUseCase
 {
-    private UserBuilder $userBuilder;
+    private CreateUserByEmailBuilder $userBuilder;
     private SaveUserByEmailInterface $saveUser;
 
-    public function __construct(UserBuilder $userBuilder, SaveUserByEmailInterface $saveUser)
+    public function __construct(CreateUserByEmailBuilder $userBuilder, SaveUserByEmailInterface $saveUser)
     {
         $this->userBuilder = $userBuilder;
         $this->saveUser = $saveUser;

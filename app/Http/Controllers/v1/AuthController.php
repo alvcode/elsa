@@ -11,7 +11,6 @@ use App\Contracts\v1\Auth\RefreshActionsContract;
 use App\Contracts\v1\Auth\RegisterActionsContract;
 use App\Contracts\v1\Auth\ResetActionsContract;
 use App\Contracts\v1\Auth\SendConfirmActionsContract;
-use App\Domain\Users\Dto\CreateUserByEmailDto;
 use App\Http\Requests\v1\Auth\ConfirmEmailRequest;
 use App\Http\Requests\v1\Auth\ForgotEmailRequest;
 use App\Http\Requests\v1\Auth\LoginEmailRequest;
@@ -23,7 +22,8 @@ use App\Http\Requests\v1\Auth\ResetPasswordRequest;
 use App\Http\Requests\v1\Auth\SendConfirmEmailRequest;
 use App\Http\Resources\v1\Auth\UserTokenResource;
 use App\Http\Validators\v1\Auth\DeviceIdHeaderValidator;
-use App\UseCases\Users\CreateUserByEmailUseCase;
+use App\Layer\Domain\Users\Dto\CreateUserByEmailDto;
+use App\Layer\UseCases\Users\CreateUserByEmailUseCase;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -58,6 +58,8 @@ class AuthController extends Controller
             $validated['email'],
             $validated['password']
         );
+
+        var_dump($createUserByEmailDto); exit();
 
         $this->createUserByEmailUseCase->create($createUserByEmailDto);
 
