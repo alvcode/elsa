@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Domain;
+namespace App\Layer\Domain\Users;
 
-use App\Domain\Entity\CreateUserByEmailEntity;
-use App\Domain\Users\Dto\CreateUserByEmailDto;
+use App\Layer\Domain\Users\Dto\CreateUserByEmailDto;
+use App\Layer\Domain\Users\Entity\CreateUserByEmailEntity;
 
-class CreateUserBuilder
+class CreateUserByEmailBuilder
 {
     public function make(CreateUserByEmailDto $createUserByEmailDto): CreateUserByEmailEntity
     {

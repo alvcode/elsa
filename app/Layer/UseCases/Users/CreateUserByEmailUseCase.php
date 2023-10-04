@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCases\Users;
+namespace App\Layer\UseCases\Users;
 
 use App\Domain\Users\Dto\CreateUserByEmailDto;
 

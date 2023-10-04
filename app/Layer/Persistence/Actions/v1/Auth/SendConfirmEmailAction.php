@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\v1\Auth;
+namespace App\Layer\Persistence\Actions\v1\Auth;
 
 use App\Contracts\v1\Auth\SendConfirmActionsContract;
 use App\Exceptions\UnprocessableHttpException;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Users\Dto;
+namespace App\Layer\Domain\Users\Dto;
 
 class CreateUserByEmailDto
 {
