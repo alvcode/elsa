@@ -21,6 +21,8 @@ use App\Contracts\v1\Auth\RefreshActionsContract;
 use App\Contracts\v1\Auth\RegisterActionsContract;
 use App\Contracts\v1\Auth\ResetActionsContract;
 use App\Contracts\v1\Auth\SendConfirmActionsContract;
+use App\Layer\Domain\Users\SaveUserByEmailInterface;
+use App\Layer\Persistence\Actions\Users\SaveUserByEmailAction;
 
 class ActionServiceProvider extends ServiceProvider
 {
@@ -33,6 +35,8 @@ class ActionServiceProvider extends ServiceProvider
         ResetActionsContract::class => ResetPasswordAction::class,
         SendConfirmActionsContract::class => SendConfirmEmailAction::class,
         PhoneCallActionsContract::class => PhoneCallAction::class,
-        LoginPhoneActionsContract::class => LoginPhoneAction::class
+        LoginPhoneActionsContract::class => LoginPhoneAction::class,
+
+        SaveUserByEmailInterface::class => SaveUserByEmailAction::class
     ];
 }

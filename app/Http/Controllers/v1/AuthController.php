@@ -59,8 +59,6 @@ class AuthController extends Controller
             $validated['password']
         );
 
-        var_dump($createUserByEmailDto); exit();
-
         $this->createUserByEmailUseCase->create($createUserByEmailDto);
 
         return ['result' => 'ok'];
