@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function() {
     Route::post('email/register', [AuthController::class, 'registerByEmail']);
-    Route::post('email/register-new', [AuthController::class, 'registerByEmailNew']);
+    //Route::post('email/register-new', [AuthController::class, 'registerByEmailNew']);
     Route::post('email/confirm', [AuthController::class, 'confirmEmail']);
     Route::post('email/login', [AuthController::class, 'loginEmail']);
     Route::post('token/refresh', [AuthController::class, 'refreshToken']);

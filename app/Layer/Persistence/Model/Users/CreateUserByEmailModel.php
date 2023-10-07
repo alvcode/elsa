@@ -10,18 +10,18 @@ class CreateUserByEmailModel
     public function fromDomain(CreateUserByEmailEntity $user): CreateUserByEmailPersistence
     {
         return new CreateUserByEmailPersistence(
-            $user->getId(),
             $user->getEmail(),
-            $user->getPassword()
+            $user->getPassword(),
+            $user->getValidateEmailCode()
         );
     }
 
     public function toDomain(CreateUserByEmailPersistence $userPersistence): CreateUserByEmailEntity
     {
         return new CreateUserByEmailEntity(
-            $userPersistence->getId(),
             $userPersistence->getEmail(),
-            $userPersistence->getPassword()
+            $userPersistence->getPassword(),
+            $userPersistence->getValidateEmailCode()
         );
     }
 }

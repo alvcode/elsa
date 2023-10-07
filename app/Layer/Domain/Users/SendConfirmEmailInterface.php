@@ -3,15 +3,15 @@
 namespace App\Layer\Domain\Users;
 
 use App\Layer\Domain\Users\Entity\CreateUserByEmailEntity;
-use App\Layer\Domain\Users\Repositories\UserRepositoryInterface;
+use App\Layer\Domain\Users\Repositories\UserEmailRepositoryInterface;
 use App\Layer\Persistence\Model\Users\CreateUserByEmailModel;
 
-interface SaveUserByEmailInterface
+interface SendConfirmEmailInterface
 {
     public function __construct(
         CreateUserByEmailModel $userModel, 
-        UserRepositoryInterface $userRepository
+        UserEmailRepositoryInterface $userRepository
     );
 
-    public function save(CreateUserByEmailEntity $userEntity): void;
+    public function send(CreateUserByEmailEntity $userEntity): void;
 }

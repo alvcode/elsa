@@ -10,9 +10,9 @@ class CreateUserByEmailBuilder
     public function make(CreateUserByEmailDto $createUserByEmailDto): CreateUserByEmailEntity
     {
         return new CreateUserByEmailEntity(
-            null,
             $createUserByEmailDto->getEmail(),
-            $createUserByEmailDto->getPassword()
+            $createUserByEmailDto->getPassword(),
+            $createUserByEmailDto->getValidateEmailCode()
         );
     }
 }

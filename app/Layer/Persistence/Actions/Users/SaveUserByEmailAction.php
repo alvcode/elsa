@@ -3,18 +3,18 @@
 namespace App\Layer\Persistence\Actions\Users;
 
 use App\Layer\Domain\Users\Entity\CreateUserByEmailEntity;
+use App\Layer\Domain\Users\Repositories\UserRepositoryInterface;
 use App\Layer\Domain\Users\SaveUserByEmailInterface;
 use App\Layer\Persistence\Model\Users\CreateUserByEmailModel;
-use App\Layer\Persistence\Repositories\Users\UserRepository;
 
 class SaveUserByEmailAction implements SaveUserByEmailInterface
 {
     private CreateUserByEmailModel $userModel;
-    private UserRepository $userRepository;
+    private UserRepositoryInterface $userRepository;
 
     public function __construct(
         CreateUserByEmailModel $userModel, 
-        UserRepository $userRepository
+        UserRepositoryInterface $userRepository
     )
     {
         $this->userModel = $userModel;

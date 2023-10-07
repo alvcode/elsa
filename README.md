@@ -5,3 +5,8 @@ REST API проекта Elsa
 ~~~
 php artisan route:cache
 ~~~
+
+Обновить кэш конфигурации приложения
+~~~
+php artisan config:cache
+~~~

@@ -4,24 +4,19 @@ namespace App\Layer\Persistence\Entity\Users;
 
 class CreateUserByEmailPersistence
 {
-    private ?int $id;
     private string $email;
     private string $password;
+    private int $validate_email_code;
 
     public function __construct(
-        ?int $id,
         string $email,
-        string $password
+        string $password,
+        int $validate_email_code
     )
     {
-        $this->id = $id;
         $this->email = $email;
         $this->password = $password;
-    }
-
-    public function getId(): ?int 
-    {
-        return $this->id;
+        $this->validate_email_code = $validate_email_code;
     }
 
     public function getEmail(): string 
@@ -32,5 +27,10 @@ class CreateUserByEmailPersistence
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    public function getValidateEmailCode(): int 
+    {
+        return $this->validate_email_code;
     }
 }

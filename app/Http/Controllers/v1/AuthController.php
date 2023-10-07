@@ -35,29 +35,17 @@ class AuthController extends Controller
     {
         $this->createUserByEmailUseCase = $createUserByEmailUseCase;
     }
-    
-    
+
+
     public function registerByEmail(
-        RegisterEmailRequest $request, 
-        RegisterActionsContract $registerEmailAction
-    ): array
-    {
-        $validated = $request->validated();
-        $registerEmailAction($validated);
-        return ['result' => 'ok'];
-    }
-
-
-    public function registerByEmailNew(
         RegisterEmailRequest $request
     ): array
     {
         $validated = $request->validated();
 
-        $createUserByEmailDto = new CreateUserByEmailDto(
-            $validated['email'],
-            $validated['password']
-        );
+        $createUserByEmailDto = new CreateUserByEmailDto();
+        $createUserByEmailDto->setEmail($validated['email']);
+        $createUserByEmailDto->setPassword($validated['password']);
 
         $this->createUserByEmailUseCase->create($createUserByEmailDto);
 

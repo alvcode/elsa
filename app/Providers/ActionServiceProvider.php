@@ -11,7 +11,6 @@ use App\Actions\v1\Auth\RefreshTokenAction;
 use Illuminate\Support\ServiceProvider;
 use App\Actions\v1\Auth\RegisterEmailAction;
 use App\Actions\v1\Auth\ResetPasswordAction;
-use App\Actions\v1\Auth\SendConfirmEmailAction;
 use App\Contracts\v1\Auth\ConfirmActionsContract;
 use App\Contracts\v1\Auth\ForgotActionsContract;
 use App\Contracts\v1\Auth\LoginActionsContract;
@@ -22,7 +21,9 @@ use App\Contracts\v1\Auth\RegisterActionsContract;
 use App\Contracts\v1\Auth\ResetActionsContract;
 use App\Contracts\v1\Auth\SendConfirmActionsContract;
 use App\Layer\Domain\Users\SaveUserByEmailInterface;
+use App\Layer\Domain\Users\SendConfirmEmailInterface;
 use App\Layer\Persistence\Actions\Users\SaveUserByEmailAction;
+use App\Layer\Persistence\Actions\Users\SendConfirmEmailAction;
 
 class ActionServiceProvider extends ServiceProvider
 {
@@ -33,10 +34,11 @@ class ActionServiceProvider extends ServiceProvider
         RefreshActionsContract::class => RefreshTokenAction::class,
         ForgotActionsContract::class => ForgotEmailAction::class,
         ResetActionsContract::class => ResetPasswordAction::class,
-        SendConfirmActionsContract::class => SendConfirmEmailAction::class,
+        //SendConfirmActionsContract::class => SendConfirmEmailAction::class,
         PhoneCallActionsContract::class => PhoneCallAction::class,
         LoginPhoneActionsContract::class => LoginPhoneAction::class,
 
-        SaveUserByEmailInterface::class => SaveUserByEmailAction::class
+        SaveUserByEmailInterface::class => SaveUserByEmailAction::class,
+        SendConfirmEmailInterface::class => SendConfirmEmailAction::class
     ];
 }

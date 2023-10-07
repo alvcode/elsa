@@ -4,10 +4,25 @@ namespace App\Layer\Domain\Users\Dto;
 
 class CreateUserByEmailDto
 {
-    public function __construct(
-        public readonly string $email,
-        public readonly string $password,
-    ) {}
+    private string $email;
+    private string $password;
+    private int $validate_email_code;
+
+    public function setEmail(string $email): void 
+    {
+        $this->email = $email;
+    }
+
+    public function setPassword(string $password): void 
+    {
+        $this->password = $password;
+    }
+
+    public function setValidateEmailCode(int $code): void 
+    {
+        $this->validate_email_code = $code;
+    }
+    
 
     public function getEmail(): string 
     {
@@ -17,5 +32,10 @@ class CreateUserByEmailDto
     public function getPassword(): string 
     {
         return $this->password;
+    }
+
+    public function getValidateEmailCode(): int 
+    {
+        return $this->validate_email_code;
     }
 }
