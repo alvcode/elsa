@@ -4,8 +4,8 @@ namespace App\Layer\UseCases\Users;
 
 use App\Layer\Domain\Users\CreateUserByEmailBuilder;
 use App\Layer\Domain\Users\Dto\CreateUserByEmailDto;
-use App\Layer\Domain\Users\SaveUserByEmailInterface;
-use App\Layer\Domain\Users\SendConfirmEmailInterface;
+use App\Layer\Domain\Users\Actions\SaveUserByEmailInterface;
+use App\Layer\Domain\Users\Actions\SendConfirmEmailInterface;
 
 class CreateUserByEmailUseCase
 {
@@ -24,7 +24,7 @@ class CreateUserByEmailUseCase
         $this->sendEmail = $sendEmail;
     }
 
-    public function create(CreateUserByEmailDto $createUserDto): void
+    public function action(CreateUserByEmailDto $createUserDto): void
     {
         $createUserDto->setValidateEmailCode($this->generateValidationCode());
 

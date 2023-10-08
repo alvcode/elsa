@@ -4,7 +4,7 @@ namespace App\Layer\Persistence\Actions\Users;
 
 use App\Layer\Domain\Users\Entity\CreateUserByEmailEntity;
 use App\Layer\Domain\Users\Repositories\UserEmailRepositoryInterface;
-use App\Layer\Domain\Users\SendConfirmEmailInterface;
+use App\Layer\Domain\Users\Actions\SendConfirmEmailInterface;
 use App\Layer\Persistence\Model\Users\CreateUserByEmailModel;
 
 class SendConfirmEmailAction implements SendConfirmEmailInterface

@@ -20,10 +20,14 @@ use App\Contracts\v1\Auth\RefreshActionsContract;
 use App\Contracts\v1\Auth\RegisterActionsContract;
 use App\Contracts\v1\Auth\ResetActionsContract;
 use App\Contracts\v1\Auth\SendConfirmActionsContract;
-use App\Layer\Domain\Users\SaveUserByEmailInterface;
-use App\Layer\Domain\Users\SendConfirmEmailInterface;
+use App\Layer\Domain\Users\Actions\GetUserByEmailActionInterface;
+use App\Layer\Domain\Users\Actions\SaveUserByEmailInterface;
+use App\Layer\Domain\Users\Actions\SendConfirmEmailInterface;
+use App\Layer\Domain\Users\Actions\UpdateUserActionInterface;
+use App\Layer\Persistence\Actions\Users\GetUserByEmailAction;
 use App\Layer\Persistence\Actions\Users\SaveUserByEmailAction;
 use App\Layer\Persistence\Actions\Users\SendConfirmEmailAction;
+use App\Layer\Persistence\Actions\Users\UpdateUserAction;
 
 class ActionServiceProvider extends ServiceProvider
 {
@@ -39,6 +43,8 @@ class ActionServiceProvider extends ServiceProvider
         LoginPhoneActionsContract::class => LoginPhoneAction::class,
 
         SaveUserByEmailInterface::class => SaveUserByEmailAction::class,
-        SendConfirmEmailInterface::class => SendConfirmEmailAction::class
+        SendConfirmEmailInterface::class => SendConfirmEmailAction::class,
+        GetUserByEmailActionInterface::class => GetUserByEmailAction::class,
+        UpdateUserActionInterface::class => UpdateUserAction::class
     ];
 }

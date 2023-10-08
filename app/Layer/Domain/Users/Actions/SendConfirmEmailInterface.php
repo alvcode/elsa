@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Layer\Domain\Users;
+namespace App\Layer\Domain\Users\Actions;
 
 use App\Layer\Domain\Users\Entity\CreateUserByEmailEntity;
 use App\Layer\Domain\Users\Repositories\UserEmailRepositoryInterface;

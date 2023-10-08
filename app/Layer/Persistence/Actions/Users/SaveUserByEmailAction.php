@@ -4,7 +4,7 @@ namespace App\Layer\Persistence\Actions\Users;
 
 use App\Layer\Domain\Users\Entity\CreateUserByEmailEntity;
 use App\Layer\Domain\Users\Repositories\UserRepositoryInterface;
-use App\Layer\Domain\Users\SaveUserByEmailInterface;
+use App\Layer\Domain\Users\Actions\SaveUserByEmailInterface;
 use App\Layer\Persistence\Model\Users\CreateUserByEmailModel;
 
 class SaveUserByEmailAction implements SaveUserByEmailInterface

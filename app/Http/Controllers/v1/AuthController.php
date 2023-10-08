@@ -22,7 +22,9 @@ use App\Http\Requests\v1\Auth\ResetPasswordRequest;
 use App\Http\Requests\v1\Auth\SendConfirmEmailRequest;
 use App\Http\Resources\v1\Auth\UserTokenResource;
 use App\Http\Validators\v1\Auth\DeviceIdHeaderValidator;
+use App\Layer\Domain\Users\Dto\ConfirmEmailDto;
 use App\Layer\Domain\Users\Dto\CreateUserByEmailDto;
+use App\Layer\UseCases\Users\ConfirmEmailUseCase;
 use App\Layer\UseCases\Users\CreateUserByEmailUseCase;
 use Illuminate\Support\Facades\Validator;
 
@@ -30,10 +32,15 @@ class AuthController extends Controller
 {   
 
     private CreateUserByEmailUseCase $createUserByEmailUseCase;
+    private ConfirmEmailUseCase $confirmEmailUseCase;
 
-    public function __construct(CreateUserByEmailUseCase $createUserByEmailUseCase)
+    public function __construct(
+        CreateUserByEmailUseCase $createUserByEmailUseCase,
+        ConfirmEmailUseCase $confirmEmailUseCase
+    )
     {
         $this->createUserByEmailUseCase = $createUserByEmailUseCase;
+        $this->confirmEmailUseCase = $confirmEmailUseCase;
     }
 
 
@@ -47,20 +54,23 @@ class AuthController extends Controller
         $createUserByEmailDto->setEmail($validated['email']);
         $createUserByEmailDto->setPassword($validated['password']);
 
-        $this->createUserByEmailUseCase->create($createUserByEmailDto);
+        $this->createUserByEmailUseCase->action($createUserByEmailDto);
 
         return ['result' => 'ok'];
     }
 
 
-   
     public function confirmEmail(
         ConfirmEmailRequest $request,
-        ConfirmActionsContract $confirmActionsContract
     )
     {
         $validated = $request->validated();
-        $confirmActionsContract($validated);
+        $confirmEmailDto = new ConfirmEmailDto();
+        $confirmEmailDto->setEmail($validated['email']);
+        $confirmEmailDto->setValidateEmailCode($validated['code']);
+
+        $this->confirmEmailUseCase->action($confirmEmailDto);
+
         return ['result' => 'ok'];
     }
 
